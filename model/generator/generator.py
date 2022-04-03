@@ -1,7 +1,7 @@
 import torch
 
 from model.base_model import BaseModel
-from model.utils import multinomial, sequence_mask
+from model.utils import sequence_mask
 from .generator_layers import GRU, SmoothCondition
 
 
@@ -29,7 +29,7 @@ class Generator(BaseModel):
         with torch.no_grad():
             mask = sequence_mask(lens, self.max_len).unsqueeze(dim=-1)
             prob, hiddens = self.forward(target_codes, lens, noise)
-            samples = multinomial(prob).to(prob.dtype)
+            samples = torch.bernoulli(prob).to(prob.dtype)
             samples *= mask
             if return_hiddens:
                 hiddens *= mask

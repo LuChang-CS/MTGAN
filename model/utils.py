@@ -9,15 +9,6 @@ def sequence_mask(lengths, max_length):
     return result
 
 
-def multinomial(prob):
-    complement_prob = 1 - prob
-    final_prob = torch.stack([complement_prob, prob], dim=-1)
-    final_prob = final_prob.view(-1, 2)
-    output = torch.multinomial(final_prob, 1)
-    output = output.reshape(prob.shape)
-    return output
-
-
 def div_no_nan(a, b):
     mask = b == 0
     b_p = b + mask
