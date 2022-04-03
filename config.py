@@ -7,7 +7,7 @@ def _parse_base_setting(parser):
     group = parser.add_argument_group('base', 'base settings')
     group.add_argument('--seed', default=6669, type=int)
     group.add_argument('--data_path', default='data', type=str)
-    group.add_argument('--dataset', default='mimic4', type=str, choices=['mimic3', 'mimic4'])
+    group.add_argument('--dataset', default='mimic3', type=str, choices=['mimic3', 'mimic4'])
     group.add_argument('--result_path', default='result', type=str)
 
 
@@ -56,7 +56,7 @@ def _parse_log_setting(parser):
 def _parse_generate_setting(parser):
     group = parser.add_argument_group('generate', 'generate setting')
     group.add_argument('--batch_size', default=256, type=int)
-    group.add_argument('--use_iteration', default=2000, type=int)
+    group.add_argument('--use_iteration', default=-1, type=int)
     group.add_argument('--number', default=6000, type=int)
     group.add_argument('--upper_bound', default=1e7, type=int)
 
